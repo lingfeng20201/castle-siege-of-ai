@@ -1,0 +1,57 @@
+{
+  "name": "castle-siege-of-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "《AI攻防战：城堡围攻》— 在线多人策略对抗游戏（BYOK 大模型指挥官）",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "party:dev": "partykit dev",
+    "party:dev:node": "node scripts/dev-battle-server.mjs",
+    "party:start": "node party/server-node.mjs",
+    "party:deploy": "partykit deploy",
+    "db:migrate": "psql \"$DATABASE_URL\" -f sql/schema.sql",
+    "db:local": "node scripts/dev-pglite.mjs",
+    "dev:local": "sh scripts/dev-local.sh",
+    "dev:stop": "sh scripts/dev-stop.sh",
+    "smoke": "node scripts/smoke-local.mjs"
+  },
+  "dependencies": {
+    "argon2": "^0.41.1",
+    "dayjs": "^1.11.12",
+    "echarts": "^5.5.1",
+    "echarts-for-react": "^3.0.2",
+    "esbuild": "^0.21.5",
+    "framer-motion": "^11.3.28",
+    "ioredis": "^5.4.1",
+    "jose": "^5.6.3",
+    "next": "14.2.5",
+    "nodemailer": "^6.9.14",
+    "partysocket": "^1.0.2",
+    "pg": "^8.12.0",
+    "pixi.js": "^8.2.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "ws": "^8.21.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@electric-sql/pglite-socket": "^0.2.11",
+    "@types/node": "^20.14.15",
+    "@types/nodemailer": "^6.4.15",
+    "@types/pg": "^8.11.6",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "partykit": "^0.0.111",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.9",
+    "typescript": "^5.5.4"
+  }
+}

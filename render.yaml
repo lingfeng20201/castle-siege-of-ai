@@ -1,0 +1,35 @@
+# Render 蓝图：一键部署「房间服务器」（WebSocket）
+#
+# 用法：Render 控制台 → New + → Blueprint → 选择本仓库 → Apply
+# 说明：
+#   · 房间服务器是纯 Node 进程（party/server-node.mjs），无需 Cloudflare/Workers
+#   · 免费实例 15 分钟无流量会休眠；仓库内 .github/workflows/keepalive.yml
+#     会每 10 分钟 ping 一次 /health，让它保持常驻
+#   · 三个 sync:false 的变量需要你手动填（部署时 Render 会提示）：
+#       JWT_SECRET / INTERNAL_API_KEY  → 必须与 Vercel 端完全一致
+#       APP_URL                        → Vercel 站点地址，如 https://xxx.vercel.app
+
+services:
+  - type: web
+    name: castle-siege-party
+    runtime: node
+    plan: free
+    region: singapore
+    branch: main
+    buildCommand: npm install --omit=dev --no-audit --no-fund
+    startCommand: node party/server-node.mjs
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: BATTLE_HOST
+        value: 0.0.0.0
+      - key: JWT_SECRET
+        sync: false
+      - key: INTERNAL_API_KEY
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: ALLOW_LOCAL_MODEL_URL
+        value: 'false'

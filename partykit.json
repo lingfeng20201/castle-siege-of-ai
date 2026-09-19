@@ -1,0 +1,6 @@
+{
+  "$schema": "https://www.partykit.io/schema.json",
+  "name": "castle-siege",
+  "main": "party/battle.ts",
+  "compatibilityDate": "2024-08-28"
+}
